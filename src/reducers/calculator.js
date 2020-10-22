@@ -13,18 +13,47 @@ const calculator = (state = initialState, action) => {
     case actionTypes.INPUT_NUMBER:
       return {
         ...state,
-        inputValue: action.number,
+        inputValue: state.inputValue * 10 + action.number,
         isShowResult: false,
       };
     case actionTypes.PLUS:
       if (state.isCalculate) {
-        return {
-          ...state,
-          inputValue: 0,
-          operator: "+",
-          resultValue: state.resultValue + state.inputValue,
-          isShowResult: true,
-        };
+        switch (state.operator) {
+          case "+":
+            return {
+              ...state,
+              inputValue: 0,
+              operator: "+",
+              resultValue: state.resultValue + state.inputValue,
+              isShowResult: true,
+            };
+          case "-":
+            return {
+              ...state,
+              inputValue: 0,
+              operator: "+",
+              resultValue: state.resultValue - state.inputValue,
+              isShowResult: true,
+            };
+          case "*":
+            return {
+              ...state,
+              inputValue: 0,
+              operator: "+",
+              resultValue: state.resultValue * state.inputValue,
+              isShowResult: true,
+            };
+          case "/":
+            return {
+              ...state,
+              inputValue: 0,
+              operator: "+",
+              resultValue: state.resultValue / state.inputValue,
+              isShowResult: true,
+            };
+          default:
+            return state;
+        }
       } else {
         return {
           ...state,
@@ -37,13 +66,42 @@ const calculator = (state = initialState, action) => {
       }
     case actionTypes.MINUS:
       if (state.isCalculate) {
-        return {
-          ...state,
-          inputValue: 0,
-          operator: "-",
-          resultValue: state.resultValue - state.inputValue,
-          isShowResult: true,
-        };
+        switch (state.operator) {
+          case "+":
+            return {
+              ...state,
+              inputValue: 0,
+              operator: "-",
+              resultValue: state.resultValue + state.inputValue,
+              isShowResult: true,
+            };
+          case "-":
+            return {
+              ...state,
+              inputValue: 0,
+              operator: "-",
+              resultValue: state.resultValue - state.inputValue,
+              isShowResult: true,
+            };
+          case "*":
+            return {
+              ...state,
+              inputValue: 0,
+              operator: "-",
+              resultValue: state.resultValue * state.inputValue,
+              isShowResult: true,
+            };
+          case "/":
+            return {
+              ...state,
+              inputValue: 0,
+              operator: "-",
+              resultValue: state.resultValue / state.inputValue,
+              isShowResult: true,
+            };
+          default:
+            return state;
+        }
       } else {
         return {
           ...state,
@@ -56,13 +114,42 @@ const calculator = (state = initialState, action) => {
       }
     case actionTypes.MULTIPLY:
       if (state.isCalculate) {
-        return {
-          ...state,
-          inputValue: 0,
-          operator: "*",
-          resultValue: state.resultValue * state.inputValue,
-          isShowResult: true,
-        };
+        switch (state.operator) {
+          case "+":
+            return {
+              ...state,
+              inputValue: 0,
+              operator: "*",
+              resultValue: state.resultValue + state.inputValue,
+              isShowResult: true,
+            };
+          case "-":
+            return {
+              ...state,
+              inputValue: 0,
+              operator: "*",
+              resultValue: state.resultValue - state.inputValue,
+              isShowResult: true,
+            };
+          case "*":
+            return {
+              ...state,
+              inputValue: 0,
+              operator: "*",
+              resultValue: state.resultValue * state.inputValue,
+              isShowResult: true,
+            };
+          case "/":
+            return {
+              ...state,
+              inputValue: 0,
+              operator: "*",
+              resultValue: state.resultValue / state.inputValue,
+              isShowResult: true,
+            };
+          default:
+            return state;
+        }
       } else {
         return {
           ...state,
@@ -75,13 +162,42 @@ const calculator = (state = initialState, action) => {
       }
     case actionTypes.DIVIDE:
       if (state.isCalculate) {
-        return {
-          ...state,
-          inputValue: 0,
-          resultValue: state.resultValue / state.inputValue,
-          operator: "/",
-          isShowResult: true,
-        };
+        switch (state.operator) {
+          case "+":
+            return {
+              ...state,
+              inputValue: 0,
+              operator: "/",
+              resultValue: state.resultValue + state.inputValue,
+              isShowResult: true,
+            };
+          case "-":
+            return {
+              ...state,
+              inputValue: 0,
+              operator: "/",
+              resultValue: state.resultValue - state.inputValue,
+              isShowResult: true,
+            };
+          case "*":
+            return {
+              ...state,
+              inputValue: 0,
+              operator: "/",
+              resultValue: state.resultValue * state.inputValue,
+              isShowResult: true,
+            };
+          case "/":
+            return {
+              ...state,
+              inputValue: 0,
+              operator: "/",
+              resultValue: state.resultValue / state.inputValue,
+              isShowResult: true,
+            };
+          default:
+            return state;
+        }
       } else {
         return {
           ...state,
