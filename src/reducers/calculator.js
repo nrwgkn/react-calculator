@@ -1,6 +1,5 @@
 import * as actionTypes from "../utils/actionTypes";
 
-let id = 0;
 const initialState = {
   inputValue: 0,
   resultValue: 0,
@@ -253,54 +252,47 @@ const calculator = (state = initialState, action) => {
       };
 
     case actionTypes.EQUAL:
+      let newResult;
       switch (state.operator) {
         case "+":
+          newResult = state.resultValue + state.inputValue;
           return {
             inputValue: state.resultValue + state.inputValue,
             operator: "=",
             resultValue: state.resultValue + state.inputValue,
             isCalculate: false,
             isShowResult: true,
-            history: [
-              ...state.history,
-              "=" + `${state.resultValue + state.inputValue}`,
-            ],
+            history: [...state.history, "=" + newResult],
           };
         case "-":
+          newResult = state.resultValue - state.inputValue;
           return {
             inputValue: state.resultValue - state.inputValue,
             operator: "=",
             resultValue: state.resultValue - state.inputValue,
             isCalculate: false,
             isShowResult: true,
-            history: [
-              ...state.history,
-              "=" + `${state.resultValue - state.inputValue}`,
-            ],
+            history: [...state.history, "=" + newResult],
           };
         case "*":
+          newResult = state.resultValue * state.inputValue;
           return {
             inputValue: state.resultValue * state.inputValue,
             operator: "=",
             resultValue: state.resultValue * state.inputValue,
             isCalculate: false,
             isShowResult: true,
-            history: [
-              ...state.history,
-              "=" + `${state.resultValue * state.inputValue}`,
-            ],
+            history: [...state.history, "=" + newResult],
           };
         case "/":
+          newResult = state.resultValue / state.inputValue;
           return {
             inputValue: state.resultValue / state.inputValue,
             operator: "=",
             resultValue: state.resultValue / state.inputValue,
             isCalculate: false,
             isShowResult: true,
-            history: [
-              ...state.history,
-              "=" + `${state.resultValue / state.inputValue}`,
-            ],
+            history: [...state.history, "=" + newResult],
           };
         default:
           return state;
