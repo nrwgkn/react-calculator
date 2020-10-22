@@ -1,6 +1,7 @@
 import React from "react";
 import NumButton from "./NumButton";
 import OperatorButton from "./OperatorButton";
+import Result from "./Result";
 
 const Calculator = ({ calculator, actions }) => {
   console.log(calculator);
@@ -10,7 +11,15 @@ const Calculator = ({ calculator, actions }) => {
       <table className="p-calc">
         <thead className="p-calc__head">
           <tr>
-            <td colSpan="4">{calculator.resultValue}</td>
+            <td colSpan="4">
+              <Result
+                result={
+                  calculator.isShowResult
+                    ? calculator.resultValue
+                    : calculator.inputValue
+                }
+              />
+            </td>
           </tr>
         </thead>
         <tbody className="p-calc__body">
