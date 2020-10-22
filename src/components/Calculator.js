@@ -2,71 +2,75 @@ import React from "react";
 import NumButton from "./NumButton";
 import OperatorButton from "./OperatorButton";
 
-const Calculator = () => {
+const Calculator = ({ calculator, actions }) => {
+  console.log(calculator);
   return (
     <>
       <h1>calculator</h1>
       <table className="p-calc">
         <thead className="p-calc__head">
           <tr>
-            <td colSpan="4">result</td>
+            <td colSpan="4">{calculator.resultValue}</td>
           </tr>
         </thead>
         <tbody className="p-calc__body">
           <tr className="p-calc__row">
             <td>
-              <NumButton n={7} />
+              <NumButton n={7} onClick={() => actions.onNumClick(7)} />
             </td>
             <td>
-              <NumButton n={8} />
+              <NumButton n={8} onClick={() => actions.onNumClick(8)} />
             </td>
             <td>
-              <NumButton n={9} />
+              <NumButton n={9} onClick={() => actions.onNumClick(9)} />
             </td>
             <td>
-              <OperatorButton o={"÷"} />
-            </td>
-          </tr>
-          <tr className="p-calc__row">
-            <td>
-              <NumButton n={4} />
-            </td>
-            <td>
-              <NumButton n={5} />
-            </td>
-            <td>
-              <NumButton n={6} />
-            </td>
-            <td>
-              <OperatorButton o={"×"} />
+              <OperatorButton o={"÷"} onClick={() => actions.onDivideClick()} />
             </td>
           </tr>
           <tr className="p-calc__row">
             <td>
-              <NumButton n={1} />
+              <NumButton n={4} onClick={() => actions.onNumClick(4)} />
             </td>
             <td>
-              <NumButton n={2} />
+              <NumButton n={5} onClick={() => actions.onNumClick(5)} />
             </td>
             <td>
-              <NumButton n={3} />
+              <NumButton n={6} onClick={() => actions.onNumClick(6)} />
             </td>
             <td>
-              <OperatorButton o={"-"} />
+              <OperatorButton
+                o={"×"}
+                onClick={() => actions.onMultiplyClick()}
+              />
             </td>
           </tr>
           <tr className="p-calc__row">
             <td>
-              <NumButton n={0} />
+              <NumButton n={1} onClick={() => actions.onNumClick(1)} />
             </td>
             <td>
-              <OperatorButton o={"AC"} />
+              <NumButton n={2} onClick={() => actions.onNumClick(2)} />
             </td>
             <td>
-              <OperatorButton o={"="} />
+              <NumButton n={3} onClick={() => actions.onNumClick(3)} />
             </td>
             <td>
-              <OperatorButton o={"+"} />
+              <OperatorButton o={"-"} onClick={() => actions.onMinusClick()} />
+            </td>
+          </tr>
+          <tr className="p-calc__row">
+            <td>
+              <NumButton n={0} onClick={() => actions.onNumClick(0)} />
+            </td>
+            <td>
+              <OperatorButton o={"AC"} onClick={() => actions.onClearClick()} />
+            </td>
+            <td>
+              <OperatorButton o={"="} onClick={() => actions.onEqualClick()} />
+            </td>
+            <td>
+              <OperatorButton o={"+"} onClick={() => actions.onPlusClick()} />
             </td>
           </tr>
         </tbody>
