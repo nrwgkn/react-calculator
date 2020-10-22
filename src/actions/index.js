@@ -26,5 +26,5 @@ export const onEqualClick = () => ({
 });
 
 export const onClearClick = () => ({
-  type: actionTypes.CLEAR,
+  type: actionTypes.ALL_CLEAR,
 });
