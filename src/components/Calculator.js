@@ -4,14 +4,13 @@ import OperatorButton from "./OperatorButton";
 import Result from "./Result";
 
 const Calculator = ({ calculator, actions }) => {
-  console.log(calculator);
-
   const titleStyle = {
     color: "#8b646c",
     fontSize: "4rem",
     textAlign: "center",
     width: "300px",
   };
+
   return (
     <>
       <h1 style={titleStyle}>calculator</h1>
