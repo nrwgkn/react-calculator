@@ -8,7 +8,7 @@ const Calculator = ({ calculator, actions }) => {
 
   const titleStyle = {
     color: "#8b646c",
-    fontSize: "2.8rem",
+    fontSize: "4rem",
     textAlign: "center",
     width: "300px",
   };
