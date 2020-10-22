@@ -5,19 +5,32 @@ import Result from "./Result";
 
 const Calculator = ({ calculator, actions }) => {
   console.log(calculator);
+
+  const titleStyle = {
+    color: "#8b646c",
+    fontSize: "2.8rem",
+    textAlign: "center",
+    width: "300px",
+  };
   return (
     <>
-      <h1>calculator</h1>
+      <h1 style={titleStyle}>calculator</h1>
       <table className="p-calc">
         <thead className="p-calc__head">
           <tr>
             <td colSpan="4">
+              <ul className="p-calc__history">
+                {calculator.history.map((item) => {
+                  return <li>{item}</li>;
+                })}
+              </ul>
               <Result
                 result={
                   calculator.isShowResult
                     ? calculator.resultValue
                     : calculator.inputValue
                 }
+                history={calculator.history}
               />
             </td>
           </tr>
