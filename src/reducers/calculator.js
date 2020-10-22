@@ -9,39 +9,135 @@ const initialState = {
 };
 
 const calculator = (state = initialState, action) => {
-  console.log(action.number);
   switch (action.type) {
     case actionTypes.INPUT_NUMBER:
       return {
         ...state,
         inputValue: action.number,
+        isShowResult: false,
       };
-
     case actionTypes.PLUS:
-      return {
-        ...state,
-        resultValue: state.resultValue + state.inputValue,
-        operator: "+",
-      };
+      if (state.isCalculate) {
+        return {
+          ...state,
+          inputValue: 0,
+          operator: "+",
+          resultValue: state.resultValue + state.inputValue,
+          isShowResult: true,
+        };
+      } else {
+        return {
+          ...state,
+          inputValue: 0,
+          resultValue: state.inputValue,
+          operator: "+",
+          isCalculate: true,
+          isShowResult: true,
+        };
+      }
     case actionTypes.MINUS:
-      return {
-        ...state,
-        resultValue: state.resultValue - state.inputValue,
-        operator: "-",
-      };
+      if (state.isCalculate) {
+        return {
+          ...state,
+          inputValue: 0,
+          operator: "-",
+          resultValue: state.resultValue - state.inputValue,
+          isShowResult: true,
+        };
+      } else {
+        return {
+          ...state,
+          inputValue: 0,
+          operator: "-",
+          resultValue: state.inputValue,
+          isCalculate: true,
+          isShowResult: true,
+        };
+      }
     case actionTypes.MULTIPLY:
-      return {
-        ...state,
-        resultValue: state.resultValue * state.inputValue,
-        operator: "*",
-      };
+      if (state.isCalculate) {
+        return {
+          ...state,
+          inputValue: 0,
+          operator: "*",
+          resultValue: state.resultValue * state.inputValue,
+          isShowResult: true,
+        };
+      } else {
+        return {
+          ...state,
+          inputValue: 0,
+          resultValue: state.inputValue,
+          operator: "*",
+          isCalculate: true,
+          isShowResult: true,
+        };
+      }
     case actionTypes.DIVIDE:
+      if (state.isCalculate) {
+        return {
+          ...state,
+          inputValue: 0,
+          resultValue: state.resultValue / state.inputValue,
+          operator: "/",
+          isShowResult: true,
+        };
+      } else {
+        return {
+          ...state,
+          inputValue: 0,
+          resultValue: state.inputValue,
+          operator: "/",
+          isCalculate: true,
+          isShowResult: true,
+        };
+      }
+    case actionTypes.ALL_CLEAR:
       return {
-        ...state,
-        resultValue: state.resultValue / state.inputValue,
-        operator: "/",
+        inputValue: 0,
+        resultValue: 0,
+        operator: "",
+        isCalculate: false,
+        isShowResult: false,
       };
 
+    case actionTypes.EQUAL:
+      switch (state.operator) {
+        case "+":
+          return {
+            inputValue: state.resultValue + state.inputValue,
+            operator: "+",
+            resultValue: state.resultValue + state.inputValue,
+            isCalculate: false,
+            isShowResult: true,
+          };
+        case "-":
+          return {
+            inputValue: state.resultValue - state.inputValue,
+            operator: "-",
+            resultValue: state.resultValue - state.inputValue,
+            isCalculate: false,
+            isShowResult: true,
+          };
+        case "*":
+          return {
+            inputValue: state.resultValue * state.inputValue,
+            operator: "+",
+            resultValue: state.resultValue * state.inputValue,
+            isCalculate: false,
+            isShowResult: true,
+          };
+        case "/":
+          return {
+            inputValue: state.resultValue / state.inputValue,
+            operator: "+",
+            resultValue: state.resultValue / state.inputValue,
+            isCalculate: false,
+            isShowResult: true,
+          };
+        default:
+          return state;
+      }
     default:
       return state;
   }
