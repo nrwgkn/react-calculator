@@ -1,21 +1,35 @@
 import * as actionTypes from "../utils/actionTypes";
 
+let id = 0;
 const initialState = {
   inputValue: 0,
   resultValue: 0,
   operator: "",
   isCalculate: false,
   isShowResult: false,
+  history: [],
 };
 
 const calculator = (state = initialState, action) => {
+  const newHistory = [];
+
   switch (action.type) {
     case actionTypes.INPUT_NUMBER:
-      return {
-        ...state,
-        inputValue: state.inputValue * 10 + action.number,
-        isShowResult: false,
-      };
+      if (state.operator === "=") {
+        return {
+          ...state,
+          inputValue: action.number,
+          isShowResult: false,
+          history: [...newHistory, action.number],
+        };
+      } else {
+        return {
+          ...state,
+          inputValue: state.inputValue * 10 + action.number,
+          isShowResult: false,
+          history: [...state.history, action.number],
+        };
+      }
     case actionTypes.PLUS:
       if (state.isCalculate) {
         switch (state.operator) {
@@ -26,6 +40,7 @@ const calculator = (state = initialState, action) => {
               operator: "+",
               resultValue: state.resultValue + state.inputValue,
               isShowResult: true,
+              history: [...state.history, "+"],
             };
           case "-":
             return {
@@ -34,6 +49,7 @@ const calculator = (state = initialState, action) => {
               operator: "+",
               resultValue: state.resultValue - state.inputValue,
               isShowResult: true,
+              history: [...state.history, "+"],
             };
           case "*":
             return {
@@ -42,6 +58,7 @@ const calculator = (state = initialState, action) => {
               operator: "+",
               resultValue: state.resultValue * state.inputValue,
               isShowResult: true,
+              history: [...state.history, "+"],
             };
           case "/":
             return {
@@ -50,6 +67,7 @@ const calculator = (state = initialState, action) => {
               operator: "+",
               resultValue: state.resultValue / state.inputValue,
               isShowResult: true,
+              history: [...state.history, "+"],
             };
           default:
             return state;
@@ -62,6 +80,7 @@ const calculator = (state = initialState, action) => {
           operator: "+",
           isCalculate: true,
           isShowResult: true,
+          history: [...state.history, "+"],
         };
       }
     case actionTypes.MINUS:
@@ -74,6 +93,7 @@ const calculator = (state = initialState, action) => {
               operator: "-",
               resultValue: state.resultValue + state.inputValue,
               isShowResult: true,
+              history: [...state.history, "-"],
             };
           case "-":
             return {
@@ -82,6 +102,7 @@ const calculator = (state = initialState, action) => {
               operator: "-",
               resultValue: state.resultValue - state.inputValue,
               isShowResult: true,
+              history: [...state.history, "-"],
             };
           case "*":
             return {
@@ -90,6 +111,7 @@ const calculator = (state = initialState, action) => {
               operator: "-",
               resultValue: state.resultValue * state.inputValue,
               isShowResult: true,
+              history: [...state.history, "-"],
             };
           case "/":
             return {
@@ -98,6 +120,7 @@ const calculator = (state = initialState, action) => {
               operator: "-",
               resultValue: state.resultValue / state.inputValue,
               isShowResult: true,
+              history: [...state.history, "-"],
             };
           default:
             return state;
@@ -110,6 +133,7 @@ const calculator = (state = initialState, action) => {
           resultValue: state.inputValue,
           isCalculate: true,
           isShowResult: true,
+          history: [...state.history, "-"],
         };
       }
     case actionTypes.MULTIPLY:
@@ -122,6 +146,7 @@ const calculator = (state = initialState, action) => {
               operator: "*",
               resultValue: state.resultValue + state.inputValue,
               isShowResult: true,
+              history: [...state.history, "×"],
             };
           case "-":
             return {
@@ -130,6 +155,7 @@ const calculator = (state = initialState, action) => {
               operator: "*",
               resultValue: state.resultValue - state.inputValue,
               isShowResult: true,
+              history: [...state.history, "×"],
             };
           case "*":
             return {
@@ -138,6 +164,7 @@ const calculator = (state = initialState, action) => {
               operator: "*",
               resultValue: state.resultValue * state.inputValue,
               isShowResult: true,
+              history: [...state.history, "×"],
             };
           case "/":
             return {
@@ -146,6 +173,7 @@ const calculator = (state = initialState, action) => {
               operator: "*",
               resultValue: state.resultValue / state.inputValue,
               isShowResult: true,
+              history: [...state.history, "×"],
             };
           default:
             return state;
@@ -158,6 +186,7 @@ const calculator = (state = initialState, action) => {
           operator: "*",
           isCalculate: true,
           isShowResult: true,
+          history: [...state.history, "×"],
         };
       }
     case actionTypes.DIVIDE:
@@ -170,6 +199,7 @@ const calculator = (state = initialState, action) => {
               operator: "/",
               resultValue: state.resultValue + state.inputValue,
               isShowResult: true,
+              history: [...state.history, "÷"],
             };
           case "-":
             return {
@@ -178,6 +208,7 @@ const calculator = (state = initialState, action) => {
               operator: "/",
               resultValue: state.resultValue - state.inputValue,
               isShowResult: true,
+              history: [...state.history, "÷"],
             };
           case "*":
             return {
@@ -186,6 +217,7 @@ const calculator = (state = initialState, action) => {
               operator: "/",
               resultValue: state.resultValue * state.inputValue,
               isShowResult: true,
+              history: [...state.history, "÷"],
             };
           case "/":
             return {
@@ -194,6 +226,7 @@ const calculator = (state = initialState, action) => {
               operator: "/",
               resultValue: state.resultValue / state.inputValue,
               isShowResult: true,
+              history: [...state.history, "÷"],
             };
           default:
             return state;
@@ -206,6 +239,7 @@ const calculator = (state = initialState, action) => {
           operator: "/",
           isCalculate: true,
           isShowResult: true,
+          history: [...state.history, "÷"],
         };
       }
     case actionTypes.ALL_CLEAR:
@@ -215,6 +249,7 @@ const calculator = (state = initialState, action) => {
         operator: "",
         isCalculate: false,
         isShowResult: false,
+        history: [],
       };
 
     case actionTypes.EQUAL:
@@ -222,34 +257,50 @@ const calculator = (state = initialState, action) => {
         case "+":
           return {
             inputValue: state.resultValue + state.inputValue,
-            operator: "+",
+            operator: "=",
             resultValue: state.resultValue + state.inputValue,
             isCalculate: false,
             isShowResult: true,
+            history: [
+              ...state.history,
+              "=" + `${state.resultValue + state.inputValue}`,
+            ],
           };
         case "-":
           return {
             inputValue: state.resultValue - state.inputValue,
-            operator: "-",
+            operator: "=",
             resultValue: state.resultValue - state.inputValue,
             isCalculate: false,
             isShowResult: true,
+            history: [
+              ...state.history,
+              "=" + `${state.resultValue - state.inputValue}`,
+            ],
           };
         case "*":
           return {
             inputValue: state.resultValue * state.inputValue,
-            operator: "+",
+            operator: "=",
             resultValue: state.resultValue * state.inputValue,
             isCalculate: false,
             isShowResult: true,
+            history: [
+              ...state.history,
+              "=" + `${state.resultValue * state.inputValue}`,
+            ],
           };
         case "/":
           return {
             inputValue: state.resultValue / state.inputValue,
-            operator: "+",
+            operator: "=",
             resultValue: state.resultValue / state.inputValue,
             isCalculate: false,
             isShowResult: true,
+            history: [
+              ...state.history,
+              "=" + `${state.resultValue / state.inputValue}`,
+            ],
           };
         default:
           return state;
