@@ -4,7 +4,7 @@ import Calculator from "../components/Calculator";
 import * as actions from "../actions";
 
 const mapStateToProps = (state) => ({
-  calculator: state,
+  calculator: state.calculator,
 });
 
 const mapDispatchToProps = (dispatch) => ({
