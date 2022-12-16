@@ -1,5 +1,5 @@
 import React from "react";
-import NumButton from "./NumButton";
+import NumberButton from "./NumberButton";
 import OperatorButton from "./OperatorButton";
 import Result from "./Result";
 
@@ -37,13 +37,13 @@ const Calculator = ({ calculator, actions }) => {
         <tbody className="p-calc__body">
           <tr className="p-calc__row">
             <td>
-              <NumButton n={7} onClick={() => actions.onNumClick(7)} />
+              <NumberButton n={7} onClick={() => actions.onNumClick(7)} />
             </td>
             <td>
-              <NumButton n={8} onClick={() => actions.onNumClick(8)} />
+              <NumberButton n={8} onClick={() => actions.onNumClick(8)} />
             </td>
             <td>
-              <NumButton n={9} onClick={() => actions.onNumClick(9)} />
+              <NumberButton n={9} onClick={() => actions.onNumClick(9)} />
             </td>
             <td>
               <OperatorButton o={"÷"} onClick={() => actions.onDivideClick()} />
@@ -51,13 +51,13 @@ const Calculator = ({ calculator, actions }) => {
           </tr>
           <tr className="p-calc__row">
             <td>
-              <NumButton n={4} onClick={() => actions.onNumClick(4)} />
+              <NumberButton n={4} onClick={() => actions.onNumClick(4)} />
             </td>
             <td>
-              <NumButton n={5} onClick={() => actions.onNumClick(5)} />
+              <NumberButton n={5} onClick={() => actions.onNumClick(5)} />
             </td>
             <td>
-              <NumButton n={6} onClick={() => actions.onNumClick(6)} />
+              <NumberButton n={6} onClick={() => actions.onNumClick(6)} />
             </td>
             <td>
               <OperatorButton
@@ -68,13 +68,13 @@ const Calculator = ({ calculator, actions }) => {
           </tr>
           <tr className="p-calc__row">
             <td>
-              <NumButton n={1} onClick={() => actions.onNumClick(1)} />
+              <NumberButton n={1} onClick={() => actions.onNumClick(1)} />
             </td>
             <td>
-              <NumButton n={2} onClick={() => actions.onNumClick(2)} />
+              <NumberButton n={2} onClick={() => actions.onNumClick(2)} />
             </td>
             <td>
-              <NumButton n={3} onClick={() => actions.onNumClick(3)} />
+              <NumberButton n={3} onClick={() => actions.onNumClick(3)} />
             </td>
             <td>
               <OperatorButton o={"-"} onClick={() => actions.onMinusClick()} />
@@ -82,7 +82,7 @@ const Calculator = ({ calculator, actions }) => {
           </tr>
           <tr className="p-calc__row">
             <td>
-              <NumButton n={0} onClick={() => actions.onNumClick(0)} />
+              <NumberButton n={0} onClick={() => actions.onNumClick(0)} />
             </td>
             <td>
               <OperatorButton o={"AC"} onClick={() => actions.onClearClick()} />
